@@ -4,7 +4,8 @@ import {
 	deleteAllTodo,
 	getTodo,
 	postTodos,
-} from "../store/todoSlice/todoThunk";
+} from "../../store/todoSlice/todoThunk";
+import scss from "./TodoForm.module.scss";
 
 const TodoForm = () => {
 	const [title, setTitle] = useState("");
@@ -28,18 +29,22 @@ const TodoForm = () => {
 	}, []);
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-				/>
-				<button type="submit">Add</button>
-				<button type="button" onClick={handleDeleteAll}>
-					deleteAll
-				</button>
-			</form>
+		<div className={scss.TodoForm}>
+			<div className="container">
+				<div className={scss.content}>
+					<form onSubmit={handleSubmit}>
+						<input
+							type="text"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+						/>
+						<button type="submit">Add</button>
+						<button type="button" onClick={handleDeleteAll}>
+							deleteAll
+						</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 };

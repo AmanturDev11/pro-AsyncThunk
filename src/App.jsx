@@ -1,11 +1,9 @@
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import Wrapper from "./components/Wrapper";
 
 const App = () => {
 	return (
 		<div>
-			<TodoForm />
-			<TodoList />
+			<Wrapper />
 		</div>
 	);
 };
