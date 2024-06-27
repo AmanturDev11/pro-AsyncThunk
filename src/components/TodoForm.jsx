@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getTodo, postTodos } from "../store/todoSlice/todoThunk";
+import {
+	deleteAllTodo,
+	getTodo,
+	postTodos,
+} from "../store/todoSlice/todoThunk";
 
 const TodoForm = () => {
 	const [title, setTitle] = useState("");
@@ -13,6 +17,10 @@ const TodoForm = () => {
 		};
 		dispatch(postTodos(newTodo));
 		setTitle("");
+	};
+
+	const handleDeleteAll = () => {
+		dispatch(deleteAllTodo());
 	};
 
 	useEffect(() => {
@@ -28,6 +36,9 @@ const TodoForm = () => {
 					onChange={(e) => setTitle(e.target.value)}
 				/>
 				<button type="submit">Add</button>
+				<button type="button" onClick={handleDeleteAll}>
+					deleteAll
+				</button>
 			</form>
 		</div>
 	);
