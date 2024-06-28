@@ -4,10 +4,11 @@ import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../../store/todoSlice/todoThunk";
 import scss from "./TodoMap.module.scss";
 
-const TodoMap = ({ _id, title }) => {
+const TodoMap = ({ _id, title, image }) => {
 	const dispatch = useDispatch();
 	const [isEditing, setIsEditing] = useState(false);
 	const [editedTitle, setEditedTitle] = useState(title);
+	const [editedImage, setEditedImage] = useState(image);
 
 	const handleDelete = (id) => {
 		dispatch(deleteTodo(id));
@@ -20,6 +21,7 @@ const TodoMap = ({ _id, title }) => {
 	const handleCancel = () => {
 		setIsEditing(false);
 		setEditedTitle(title);
+		setEditedImage(image);
 	};
 
 	const handleSave = () => {
@@ -27,6 +29,7 @@ const TodoMap = ({ _id, title }) => {
 			updateTodo({
 				_id,
 				title: editedTitle,
+				image: editedImage,
 			})
 		);
 		setIsEditing(false);
@@ -44,12 +47,18 @@ const TodoMap = ({ _id, title }) => {
 									value={editedTitle}
 									onChange={(e) => setEditedTitle(e.target.value)}
 								/>
+								<input
+									type="url"
+									value={editedImage}
+									onChange={(e) => setEditedImage(e.target.value)}
+								/>
 								<button onClick={handleSave}>Save</button>
 								<button onClick={handleCancel}>Cancel</button>
 							</div>
 						) : (
 							<div className={scss.card2}>
 								<h2>{title}</h2>
+								<img style={{ width: "300px" }} src={image} alt="" />
 								<button onClick={() => handleDelete(_id)}>Delete</button>
 								<button onClick={handleEdit}>Edit</button>
 							</div>

@@ -53,9 +53,9 @@ export const deleteAllTodo = createAsyncThunk(
 
 export const updateTodo = createAsyncThunk(
 	"todo/updateTodo",
-	async ({ _id, title }, { rejectWithValue, dispatch }) => {
+	async ({ _id, title, image }, { rejectWithValue, dispatch }) => {
 		try {
-			const response = await axios.put(`${URL}/${_id}`, { title });
+			const response = await axios.put(`${URL}/${_id}`, { title, image });
 			dispatch(getTodo());
 			return response.data;
 		} catch (error) {

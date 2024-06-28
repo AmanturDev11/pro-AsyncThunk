@@ -9,15 +9,18 @@ import scss from "./TodoForm.module.scss";
 
 const TodoForm = () => {
 	const [title, setTitle] = useState("");
+	const [image, setImage] = useState("");
 	const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const newTodo = {
 			title,
+			image,
 		};
 		dispatch(postTodos(newTodo));
 		setTitle("");
+		setImage("");
 	};
 
 	const handleDeleteAll = () => {
@@ -34,9 +37,16 @@ const TodoForm = () => {
 				<div className={scss.content}>
 					<form onSubmit={handleSubmit}>
 						<input
+							placeholder="title"
 							type="text"
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
+						/>
+						<input
+							placeholder="image"
+							type="url"
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
 						/>
 						<button type="submit">Add</button>
 						<button type="button" onClick={handleDeleteAll}>
